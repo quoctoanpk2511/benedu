@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,600");
+
+* {
+    font-family: "Nunito", sans-serif;
+    text-decoration: none!important;
+}
+
+.login-form {
+    width: 65%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 1px 11px 68px -20px rgba(0,0,0,.75);
+}
+
+.login-form .login-btn {
+    border-radius: 50px;
+    width: 100%;
+    box-shadow: 0 15px 28px -5px rgba(29,130,255,.45);
+}
+
+.cover {
+    width: 100vw;
+    height: 100px;
+    background-color: #fff;
+    transform: rotate(3deg);
+    position: absolute!important;
+    left: -122px;
+    top: -77px;
+    z-index: 0;
+}
+
+.course-info {
+    width: 18rem; 
+    position: absolute!important;
+    top: -7rem;
+    right: 0;
+    z-index: 3;
+}
+
+.start-btn {
+    padding: 15px 100px!important;
+    font-weight: bolder;
+}
+
+body {
+    background: #fafafa;
+}
+
+p {
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/*Cusstom Sidebar */
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    padding-top: 60px;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+    background: #aa70ef;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 20px 30px;
+    font-size: 1.3em;
+    display: block;
+    font-weight: bold;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+.loading {
+	position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(30deg, #a667ed , #4152ce);
+}
+.loading .intro {
+	display: block;
+	text-align: center;
+	font-size: 4rem;
+	padding-top: 15%;
+	color: #fff;
+}
