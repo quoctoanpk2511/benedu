@@ -68,7 +68,7 @@
                                                 </form>
                                             </li>
                                             <li><a href="{{ url('/all-courses') }}">Courses</a></li>
-                                            <li><a href="{{ url('/all-subjects') }}">Categories</a></li>
+                                            <li><a href="{{ url('/all-subjects') }}">Subjects</a></li>
                                             <li><a href="{{ url('/community') }}">Community</a></li>
                                             <li><a href="{{ url('/about') }}">About</a></li>
                                             <li><a href="{{ url('/contact') }}">Contact</a></li>
@@ -97,7 +97,9 @@
                                                     <a class="dropdown-item" href="{{ url('/home') }}" class="login popup-with-form">
                                                         <span>My page</span>
                                                     </a>
-                                                    <!-- My profile Shin -->
+                                                    <a class="dropdown-item" href="{{  route('users.edit',  Auth::user()->id)  }}" class="login popup-with-form">
+                                                        <span>My profile</span>
+                                                    </a>
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();">
@@ -205,7 +207,7 @@
                                 </h3>
                                 <ul>
                                     <li><a href="{{ url('/all-courses') }}">Courses</a></li>
-                                    <li><a href="{{ url('/all-subjects') }}">Categories</a></li>
+                                    <li><a href="{{ url('/all-subjects') }}">Subjects</a></li>
                                     <li><a href="{{ url('/community') }}">Community</a></li>
                                     <li><a href="{{ url('/about') }}">About</a></li>
                                     <li><a href="{{ url('/contact') }}">Contact</a></li>

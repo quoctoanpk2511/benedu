@@ -63,7 +63,7 @@
                                             </form>
                                         </li>
                                         <li><a href="{{ url('/all-courses') }}">Courses</a></li>
-                                        <li><a href="{{ url('/all-subjects') }}">Categories</a></li>
+                                        <li><a href="{{ url('/all-subjects') }}">Subjects</a></li>
                                         <li><a href="{{ url('/community') }}">Community</a></li>
                                         <li><a href="{{ url('/about') }}">About</a></li>
                                         <li><a href="{{ url('/contact') }}">Contact</a></li>
@@ -89,11 +89,17 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ url('/home') }}" class="login popup-with-form">
+                                            <a class="dropdown-item" href="{{ url('/home') }}" class="login popup-with-form">
                                                     <span>My page</span>
                                                 </a>
-                                                <!-- My profile Shin -->
-                                                <!-- User Management Shin -->
+                                                <a class="dropdown-item" href="{{  route('users.edit',  Auth::user()->id)  }}" class="login popup-with-form">
+                                                    <span>My profile</span>
+                                                </a>
+                                                @if(auth()->user()->isAdmin())  
+                                                <a class="dropdown-item" href="{{ route('users.index') }}">
+                                                    <span>Users</span>
+                                                </a>
+                                                @endif
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
