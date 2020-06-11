@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Course;
+use App\Course;
 use App\Subject;
 use Illuminate\Http\Request;
 use App\Http\Requests\Subjects\CreateSubjectRequest;
@@ -60,7 +60,7 @@ class SubjectsController extends Controller
      */
     public function show(Subject $subject)
     {
-        // return view('subjects.show')->with('subject', $subject)->with('courses', Course::all());
+        return view('subjects.show')->with('subject', $subject)->with('courses', Course::all());
     }
 
     /**
