@@ -40,6 +40,7 @@ Route::resources([
     'courses' => 'CoursesController',
     'enrollments' => 'EnrollmentsController',
     'lessons' => 'LessonsController',
+    'votes' => 'VotesController',
 ]);
 
 Route::middleware(['auth', 'admin'])->group(function () {

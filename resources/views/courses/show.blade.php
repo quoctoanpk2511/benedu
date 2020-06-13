@@ -7,7 +7,25 @@
                  <div class="col-xl-6">
                      <div class="course_text">
                             <h3>{{ $course->title }}</h3>
-                            <!-- add vote Shin -->
+                            @php
+                                $star = \App\Votes::where(['course_id' => $course->id])->avg('star') ;
+                                $starInt = round($star);
+                                $starFloat=round($star,1);
+                            @endphp
+                            <div class="stars mt-2 mb-3" style="font-size: 20px;">
+                                @for ($i = 0; $i < $starInt; $i++)
+                                    <span class='fa fa-star checked' ></span>
+                                @endfor
+                                @for ($i = $starInt; $i < 5; $i++)
+                                    <span class='fa fa-star' style="color : white" ></span>
+                                @endfor
+                                
+                                @if ( \App\Votes::where(['course_id' => $course->id]) )
+                                    <span class="indexVote">{{$starFloat}}</span>
+                                @else
+                                    <span class="indexVote">0.0</span>
+                                @endif
+                            </div>
                             <div class="hours">
                                 <div class="video">
                                      <div class="single_video">
@@ -135,7 +153,30 @@
                         <div class="feedback_info">
                             <h2>Write your feedback</h2>
                             <p>Your rating</p>
-                            <!-- rating form Shin -->
+                            <form action="{{ route('votes.store') }}" enctype="multipart/form-data" method = "POST">
+                                @csrf
+		                        <fieldset class='rate'>
+                                    <input id='rate1-star5' type='radio' name='star' value='5' />
+                                    <label for='rate1-star5' title='Excellent'>5</label>
+                                    <input id='rate1-star4' type='radio' name='star' value='4' />
+                                    <label for='rate1-star4' title='Good'>4</label>
+                                    <input id='rate1-star3' type='radio' name='star' value='3' />
+                                    <label for='rate1-star3' title='Satisfactory'>3</label>
+                                    <input id='rate1-star2' type='radio' name='star' value='2' />
+                                    <label for='rate1-star2' title='Bad'>2</label>
+                                    <input id='rate1-star1' type='radio' name='star' value='1' />
+                                    <label for='rate1-star1' title='Very bad'>1</label>
+                                </fieldset>
+                                @for ($i = 1; $i < 6; $i++)
+                                    @if( \App\Http\Controllers\VotesController::checkVote(Auth::user()->id, $course->id) == $i )
+                                        <script>document.getElementById("rate1-star" + <?php echo $i; ?>).checked = true;</script>
+                                        @break
+                                    @endif
+                                @endfor
+                                <input type="hidden" class="form-control" name="student_id" id="student_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" class="form-control" name="course_id" id="course_id" value="{{ $course->id}}">
+	  	                        <input type="submit" class="btn btn-primary d-block" value="Submit">
+	                        </form>
                         </div>
                         @endif
                         @endauth

@@ -46,9 +46,14 @@
                                                 <span>{{ $course->subject->name }}</span>
                                                 <h3><a href="{{ route('courses.show', $course->id) }}">{{ $course->title }}</a></h3>
                                                 <div class="star_prise d-flex justify-content-between">
-                                                <div class="star">
+                                                    <div class="star">
                                                         <i class="flaticon-mark-as-favorite-star"></i>
-                                                        <!-- add star Shin -->
+                                                        @php
+                                                            $star = \App\Votes::where(['course_id' => $course->id])->avg('star') ;
+                                                            $starInt = round($star);
+                                                            $starFloat=round($star,1);
+                                                        @endphp
+                                                        <span>{{$starFloat }}</span>
                                                     </div>
                                                 </div>
                                             </div>
