@@ -1,5 +1,8 @@
 <?php
 
+use App\Course;
+use Illuminate\Support\Facades\Input;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +17,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any ( '/search', function () {
+    $q = Input::get ( 'q' );
+    $course = Course::where ( 'title', 'LIKE', '%' . $q . '%' )->get();
+    if (count ( $course ) > 0)
+        return view ( 'search' )->withDetails ( $course )->withQuery ( $q );
+    else
+        return view ( 'search' )->withMessage ( 'No Details found. Try to search again !' );
+} );
 
 Auth::routes(['verify' => true]);
 
