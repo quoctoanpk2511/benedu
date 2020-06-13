@@ -20,12 +20,14 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/all-subjects', 'SubjectsController@showAll')->name('all-subjects');
 Route::get('/all-courses', 'CoursesController@showAll')->name('all-courses');
+Route::post('/add-lesson', 'CoursesController@addLesson')->name('courses.add-lesson');
 
 Route::resources([
     'users' => 'UsersController',
     'subjects' => 'SubjectsController',
     'courses' => 'CoursesController',
     'enrollments' => 'EnrollmentsController',
+    'lessons' => 'LessonsController',
 ]);
 
 Route::middleware(['auth', 'admin'])->group(function () {

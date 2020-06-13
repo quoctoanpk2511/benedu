@@ -77,14 +77,7 @@
 
                     @auth
                     @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $course->id) )
-                    <div class="single_courses">
-
-                        
-                        <h3>Video</h3>
-                        <p><img src="{{ asset('storage/'.$course->video) }}" alt="" style="width: 90%"></p>      
-                    </div>
-                    @endif
-                    <!-- <div class="single_courses outline_courses_info mt-5">
+                    <div class="single_courses outline_courses_info mt-5">
                         <h3 >Lesson</h3>
                         <div id="accordion">
                             @foreach ($course->lessons as $lesson)
@@ -99,17 +92,16 @@
                                     @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $course->id) )
                                         <div id="{{$lesson->id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                             <div class="card-body">
-                                            {{$lesson->description}}
+                                                <a href="{{$lesson->description}}" target="_blank">
+                                                {{$lesson->description}}
+                                                </a>
                                             </div>
                                         </div>
                                     @endif
                                 </div>
                             @endforeach
                         </div>
-
-                    </div> -->
-                    @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $course->id) )
-                        <h3 class="pt-4"></h3>
+                    </div>
                     @else
                         <h3 class="pt-4">Enroll this course to see more awesome content !</h3>
                     @endif

@@ -100,6 +100,11 @@
                                                     <a class="dropdown-item" href="{{  route('users.edit',  Auth::user()->id)  }}" class="login popup-with-form">
                                                         <span>My profile</span>
                                                     </a>
+                                                    @if(auth()->user()->isAdmin())  
+                                                    <a class="dropdown-item" href="{{ route('users.index') }}">
+                                                        <span>Users</span>
+                                                    </a>
+                                                    @endif
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();">

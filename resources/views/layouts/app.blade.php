@@ -147,15 +147,14 @@
                                 <!-- Sidebar -->
                                 <nav id="sidebar">
                                     <ul class="list-unstyled components">
-                                        <!-- Add href for each Shin -->
                                         <li>
-                                            <a href="#"><i class="ti-layout-grid2 mr-3"></i>Subjects</a>
+                                            <a href="{{ route('subjects.index') }}"><i class="ti-layout-grid2 mr-3"></i>Subjects</a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="ti-book mr-3"></i>Courses</a>
+                                            <a href="{{ route('courses.index') }}"><i class="ti-book mr-3"></i>Courses</a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="ti-book mr-3"></i>Lessons</a>
+                                            <a href="{{ route('lessons.index') }}"><i class="ti-book mr-3"></i>Lessons</a>
                                         </li>
 
                                         <!-- Wallet Shin -->

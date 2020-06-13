@@ -146,20 +146,20 @@ class CoursesController extends Controller
         return view('courses.showAll')->with('courses', $courses);
     }
 
-    // public function addLesson(AddLessonsRequest $request)
-    // {
-    //     if (auth()->user()->isStudent()) {
-    //         return redirect(route('home'));
-    //     }
-    //     Lesson::create([
-    //         'title' => $request->title,
-    //         'description' => $request->description,
-    //         'course_id' => $request->course_id
-    //     ]);
+    public function addLesson(AddLessonsRequest $request)
+    {
+        if (auth()->user()->isStudent()) {
+            return redirect(route('home'));
+        }
+        Lesson::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'course_id' => $request->course_id
+        ]);
 
-    //     // flash message
-    //     session()->flash('success', 'Lesson created successfully.');
-    //     // redirect user
-    //     return redirect(route('courses.index'));
-    // }
+        // flash message
+        session()->flash('success', 'Lesson created successfully.');
+        // redirect user
+        return redirect(route('courses.index'));
+    }
 }
