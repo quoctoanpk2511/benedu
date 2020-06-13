@@ -4,7 +4,7 @@
 自由な空間で学びたい学生たち
 
 ## To build
-- Create a database locally named `homestead` utf8_general_ci 
+- Create a database locally named `benedu`
 - Download composer https://getcomposer.org/download/
 - Pull Laravel/php project from git provider.
 - Rename `.env.example` file to `.env`inside your project root and fill the database information.
@@ -14,6 +14,7 @@
 - Run `php artisan key:generate` 
 - Run `php artisan migrate`
 - Run `php artisan db:seed` to run seeders, if any.
+- If you get an error when you're using seed, like "Cannot write to directory public/storage/", please delete storage folder and run `php artisan storage:link`
 - Run `php artisan serve`
 
 #####You can now access your project at localhost:8000 :)
