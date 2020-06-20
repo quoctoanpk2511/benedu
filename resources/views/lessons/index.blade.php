@@ -6,9 +6,9 @@
     <div class="card-body">
         <table class="table">
             <thead>
-                <th>Couse</th>
-                <!-- <th>Description</th> -->
-                <th>Progress</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>In Course</th>
                 <th></th>
                 <th></th>
             </thead>
@@ -21,9 +21,9 @@
                     <td>
                         {{ $lesson->title }}
                     </td>
-                    <!-- <td>
+                    <td>
                         {{ $lesson->description }}
-                    </td> -->
+                    </td>
                     <td>
                         {{ $lesson->course->title }}
                     </td>
@@ -44,14 +44,13 @@
                 @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $lesson->course->id) )
                 <tr>
                     <td>
-                        <!-- {{ $lesson->title }} -->
-                        {{ $lesson->course->title }}
+                        {{ $lesson->title }}
                     </td>
-                    <!-- <td>
-                        {{ $lesson->course->description }}
-                    </td> -->
                     <td>
-                        <p>4/6</p>
+                        {{ $lesson->description }}
+                    </td>
+                    <td>
+                        {{ $lesson->course->title }}
                     </td>
                 </tr>
                 @endif

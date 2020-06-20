@@ -7,6 +7,7 @@ use App\Subject;
 use App\User;
 use App\Votes;
 use App\Lesson;
+use App\Learned;
 use Illuminate\Http\Request;
 use App\Http\Requests\Courses\CreateCoursesRequest;
 use App\Http\Requests\Courses\UpdateCoursesRequest;
@@ -23,7 +24,8 @@ class CoursesController extends Controller
     public function index()
     {
         $courses = Course::orderBy('created_at', 'desc')->paginate(8);
-        return view('courses.index')->with('courses', $courses);
+        $learneds = Learned::orderBy('created_at', 'desc');
+        return view('courses.index')->with('courses', $courses)->with('learneds', $learneds);
     }
 
     /**

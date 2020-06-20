@@ -19,6 +19,8 @@ class CreateLearnedsTable extends Migration
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('lesson_id')->unsigned()->index();
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            $table->integer('course_id')->unsigned()->index();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->timestamps();
         });
     }

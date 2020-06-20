@@ -75,8 +75,6 @@
             
             <input type="hidden" class="form-control" name="student_id" id="student_id" value="{{ Auth::user()->id }}">
             <input type="hidden" class="form-control" name="course_id" id="course_id" value="{{ $course->id }}">
-
-            <input type="hidden" class="form-control" name="course_cost" id="course_cost" value="{{ $course->cost }}">
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back</button>
@@ -99,23 +97,41 @@
                         <h3 >Lesson</h3>
                         <div id="accordion">
                             @foreach ($course->lessons as $lesson)
+                                
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#{{$lesson->id}}" aria-expanded="false" aria-controls="collapseTwo">
-                                                <i class="flaticon-question"></i> {{$lesson->title}}
-                                            </button>
+                                            @auth
+                                                @if( \App\Http\Controllers\LearnedController::checkLearned(Auth::user()->id, $lesson->id) )
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#{{$lesson->id}}" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="flaticon-question"></i> {{$lesson->title}} <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </button>
+                                                @else
+                                                    <form id="joinLessonForm" action="{{ route('learneds.store')}}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @auth
+                                                        <input type="hidden" class="form-control" name="student_id" id="student_id" value="{{ Auth::user()->id }}">
+                                                        <input type="hidden" class="form-control" name="lesson_id" id="lesson_id" value="{{ $lesson->id }}">
+                                                        <input type="hidden" class="form-control" name="course_id" id="course_id" value="{{ $course->id }}">
+                                                        @endauth
+                                                    </form>
+                                                    <button type="submit" form="joinLessonForm" class="btn btn-link" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="flaticon-question"></i> {{$lesson->title}}
+                                                    </button>                                                
+                                                @endif
+                                            @endauth
                                         </h5>
                                     </div>
                                     @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $course->id) )
                                         <div id="{{$lesson->id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                             <div class="card-body">
-                                                <a href="{{$lesson->description}}" target="_blank">
-                                                {{$lesson->description}}
-                                                </a>
+                                                <iframe width="500" height="370" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+                                                    src="{{$lesson->description}}">
+                                                </iframe>                                          
                                             </div>
                                         </div>
                                     @endif
+                                    
                                 </div>
                             @endforeach
                         </div>
@@ -186,13 +202,13 @@
         </div>
     </div>
 
-
 @endsection
 
 @section('scripts')
     <script>
         function handle() {
             var form = document.getElementById('joinCourseForm')
+            console.log(form);
             $('#joinModal').modal('show')
         }
     </script>

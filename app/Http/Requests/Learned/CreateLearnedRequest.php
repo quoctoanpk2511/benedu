@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Requests\Enrollments;
+namespace App\Http\Requests\Learned;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +23,8 @@ class CreateLearnedRequest extends FormRequest
     {
         return [
             'student_id' => 'required',
-            'learned_id'=> 'required'
+            'lesson_id' => 'required',
+            'course_id' => 'required'
         ];
     }
 }

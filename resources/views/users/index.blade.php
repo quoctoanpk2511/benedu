@@ -28,22 +28,11 @@
                     </td>
                     <td>
                         @if($user->isAdmin())
-                        
-                        <!-- @elseif ($user->isTeacher())
-                            <form action="{{ route('users.make-admin', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-success btn-sm">Admin</button>
-                            </form>
-                            <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $user->id }})">Delete</button> -->
                         @else
                             <form action="{{ route('users.make-admin', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm">Admin</button>
                             </form>
-                            <!-- <form action="{{ route('users.make-teacher', $user->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-success btn-sm">Teacher</button>
-                            </form> -->
                             <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $user->id }})">Delete</button>
                         @endif
                     </td>

@@ -14,19 +14,18 @@
 
     <div class="card-body">
     <table class="table">
-        <thead>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Subject</th>
-            <th>Created By</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
         <!-- show all courses for admin -->
         @if(auth()->user()->isAdmin())
+            <thead>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
             @foreach($courses as $course)
             <tr>
                 <td>
@@ -85,9 +84,20 @@
             </tr>
             @endforeach
         @else
+            <thead>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Process</th>
+                <th></th>
+                <th></th>
+                <th></th>                   
+            </thead>
+            <tbody>
             <!-- show courses for student  -->
             @foreach($courses as $course)
                 @if( \App\Http\Controllers\EnrollmentsController::checkEnroll(Auth::user()->id, $course->id) )
+                    
                 <tr>
                     <td>
                         <img src="{{ asset('storage/'.$course->image) }}" width="120px" alt="">
@@ -99,6 +109,9 @@
                         <a href="{{ route('subjects.edit', $course->subject->id) }}">
                             {{ $course->subject->name }}
                         </a>
+                    </td>
+                    <td>
+                        {{\App\Http\Controllers\LearnedController::countLearned(Auth::user()->id, $course->id)}} / {{$course->lessons->count()}}
                     </td>
                     <td>
                         <a href="{{ route('courses.show', $course->id) }}" class="btn btn-success btn-sm">Enter</a>
